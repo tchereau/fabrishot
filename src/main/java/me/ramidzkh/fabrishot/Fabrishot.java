@@ -35,6 +35,7 @@ import net.minecraft.text.ClickEvent;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import org.lwjgl.glfw.GLFW;
+import net.minecraft.text.ClickEvent.OpenFile;
 
 import java.io.File;
 import java.io.IOException;
@@ -58,7 +59,7 @@ public class Fabrishot {
     private static CaptureTask task;
 
     private static void printFileLink(File file) {
-        Text text = Text.literal(file.getName()).formatted(Formatting.UNDERLINE).styled(style -> style.withClickEvent(new ClickEvent(ClickEvent.Action.OPEN_FILE, file.getAbsolutePath())));
+        Text text = Text.literal(file.getName()).formatted(Formatting.UNDERLINE).styled(style -> style.withClickEvent(new OpenFile(file.getAbsolutePath())));
         MinecraftClient.getInstance().execute(() -> MinecraftClient.getInstance().inGameHud.getChatHud().addMessage(Text.translatable("screenshot.success", text)));
     }
 
